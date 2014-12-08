@@ -67,21 +67,25 @@ def tweet_friends():
 def tweet_own():
   i=0
   own = api.GetUserTimeline(screen_name='geo_ebi',count=100)
+  print type(own)
   tweets=''
   for i in range(len(own)):
     if "@" not in own[i].text:
       tweets+=own[i].text
     tweets=str(tweets)
     tweets=re.sub('https?://[\w/:%#\$&\?\(\)~\.=\+\-]+',"",tweets)
-  OwnTweet = markov(tweets)
-  return OwnTweet
+#  OwnTweet = markov(tweets)
+#  return OwnTweet
+  return tweets
 
-if random.random()<0.5:
-  Bot = tweet_own()
-  print(Bot)
-  status = api.PostUpdate(Bot)
-else:
-  Bot = tweet_friends()
-  print(Bot)
-  status = api.PostUpdate(Bot)
+print(tweet_own())
+
+#if random.random()<0.5:
+#Bot = tweet_own()
+#print(Bot)
+#  status = api.PostUpdate(Bot)
+#else:
+#Bot = tweet_friends()
+#print(Bot)
+#  status = api.PostUpdate(Bot)
 
